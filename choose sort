@@ -1,1 +1,81 @@
+#include <stdio.h>
 
+int main()
+{
+    void shuchu(int a[],int n);
+    void choosesort1(int a[],int n);
+    void shuru(int a[],int n);
+    int n;
+    scanf("%d",&n);
+    int a[n];
+    //scanf("%d",&n);
+    shuru(a, n);
+    choosesort1(a,n);
+    shuchu(a,n);
+    return 0;
+}
+
+//输入函数
+void shuru(int a[],int n)
+{
+    static int i=1;
+    if(i==n){
+        scanf("%d",&a[n-1]);
+    }
+    else{
+        scanf("%d",&a[i-1]);
+        i++;
+        shuru(a, n);
+    }
+}
+//输出函数
+void shuchu(int a[],int n)
+{
+    static int i=1;
+    if(i==n){
+        printf("%d ",a[n-1]);
+    }
+    else
+    {
+        printf("%d ",a[i-1]);
+        i++;
+        shuchu(a, n);
+    }
+}
+//选择排序简单的递归写法
+void choosesort(int a[],int n)
+{
+    static int i=0;
+    int min,temp;
+    if(i==n){
+        return;
+    }
+    else{
+        min=i;
+        for(int j=i+1;j<n;j++){
+            if(a[j]<a[min])
+                min=j;
+        }
+            temp=a[i];
+            a[i]=a[min];
+            a[min]=temp;
+            i++;
+            choosesort(a, n);
+    }
+}
+//选择排序（一般法）
+void choosesort1(int a[],int n)
+{
+    for(int i=0;i<n;i++){
+        int max=i;
+        for(int j=i+1;j<n;j++){
+            if(a[max]<a[j])
+                max=j;
+        }
+        int temp;
+        temp=a[i];
+        a[i]=a[max];
+        a[max]=temp;
+    }
+        
+}
